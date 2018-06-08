@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Voice Controlled Notes App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shoelace-css/1.0.0-beta16/shoelace.css">
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+    <body>
+<!-- Voice Recognition -->
+        <div class="ribbon l-box-lrg pure-g">
+            <div class="section pure-u-1 pure-u-med-1-2 pure-u-lrg-3-5 center">
+                <h2 class="content-head content-head-ribbon">&lt;voice-recognition&gt;</h2>
+                <p>Provides you a simple DOM API to do voice recognition (speech to text).</p>
+
+                <!-- Demo #1 -->
+                <p>In the following demo, we trigger the voice recognition by using the <strong>start</strong> method when the user submits the form. Then, we add a listener to the <strong>result</strong> event to fetch the recognized content and put it into the textarea.</p>
+
+                <voice-recognition id="recognition-element"></voice-recognition>
+                <script>
+                window.addEventListener('WebComponentsReady', function(e) {
+                    var form = document.querySelector('#recognition-form'),
+                        input = document.querySelector('#recognition-input'),
+                        element = document.querySelector('#recognition-element');
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        element.start();
+                    });
+                    element.addEventListener('result', function(e) {
+                        input.textContent = e.detail.result;
+                    });
+                });
+                </script>
+
+                <div class="example">
+                    <p>Click "start", authorize, and say something...</p>
+
+                    <form id="recognition-form" class="pure-form">
+                        <fieldset>
+                            <textarea id="recognition-input" readonly></textarea>
+                        </fieldset>
+                        <fieldset>
+                            <button id="recognition-submit" class="pure-button pure-button-primary">Start!</button>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <pre><code>&lt;voice-recognition id="recognition-element"&gt;&lt;/voice-recognition&gt;
+
+&lt;script&gt;
+var form = document.querySelector('#recognition-form'),
+    input = document.querySelector('#recognition-input'),
+    element = document.querySelector('#recognition-element');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    element.start();
+});
+
+element.addEventListener('result', function(e) {
+    input.textContent = e.detail.result;
+});
+&lt;/script&gt;
+</code></pre>
+
+    </body>
+</html>
+
+
